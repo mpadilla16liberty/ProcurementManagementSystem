@@ -1,0 +1,55 @@
+
+@model List<ProcurementTrackingTool.Models.Vendor>
+
+@{
+    ViewData["Title"] = "Vendor List";
+}
+
+<h2>Vendor List</h2>
+
+<a asp-action="Index" class="btn btn-secondary mb-3">Back Home</a>
+
+<h4>Add New Vendor</h4>
+
+<form asp-action="AddVendor" method="post" class="mb-4">
+
+    <div class="mb-3">
+        <label class="form-label">Vendor Name</label>
+        <input name="VendorName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">POC Name</label>
+        <input name="PocName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">POC Email</label>
+        <input name="PocEmail" class="form-control" type="email" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Vendor</button>
+</form>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Vendor Name</th>
+            <th>POC Name</th>
+            <th>POC Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var vendor in Model)
+        {
+            <tr>
+                <td>@vendor.Id</td>
+                <td>@vendor.VendorName</td>
+                <td>@vendor.PocName</td>
+                <td>@vendor.PocEmail</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+
+@model List<ProcurementTrackingTool.Models.PurchaseRequest>
+
+@{
+    ViewData["Title"] = "View and Approve Purchase Requests";
+}
+
+<h2>View/Approve Purchase Requests</h2>
+
+<a asp-action="Index" class="btn btn-secondary mb-3">Back Home</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Vendor</th>
+            <th>Item</th>
+            <th>Cost</th>
+            <th>End User</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Approval Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.VendorName</td>
+                <td>@request.ItemName</td>
+                <td>$@request.Cost.ToString("N2")</td>
+                <td>@request.EndUserName</td>
+                <td>@request.EndUserEmail</td>
+                <td>@request.Status</td>
+                <td>
+                    <a class="btn btn-success btn-sm" asp-action="ApproveRequest" asp-route-id="@request.Id">
+                        Approve
+                    </a>
+
+                    <a class="btn btn-danger btn-sm" asp-action="RejectRequest" asp-route-id="@request.Id">
+                        Reject
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Procurement Tracking Tool";
+}
+
+<div class="text-center">
+    <h1>Welcome to the Procurement Tracking Tool</h1>
+
+    <p>This system helps track procurement requests from creation to approval.</p>
+
+    <div class="mt-4">
+        <a class="btn btn-primary m-2" asp-controller="PurchaseRequest" asp-action="Create">
+            Create Purchase Request
+        </a>
+
+        <a class="btn btn-success m-2" asp-controller="PurchaseRequest" asp-action="Approve">
+            View/Approve Purchase Requests
+        </a>
+
+        <a class="btn btn-secondary m-2" asp-controller="PurchaseRequest" asp-action="Vendors">
+            Vendor List
+        </a>
+    </div>
+</div>

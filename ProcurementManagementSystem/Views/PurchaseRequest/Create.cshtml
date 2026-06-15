@@ -1,0 +1,46 @@
+
+@model ProcurementTrackingTool.Models.PurchaseRequest
+
+@{
+    ViewData["Title"] = "Create Purchase Request";
+}
+
+<h2>Create Purchase Request</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label class="form-label">Vendor Name</label>
+        <input asp-for="VendorName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Item Being Purchased</label>
+        <input asp-for="ItemName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Cost</label>
+        <input asp-for="Cost"
+       class="form-control"
+       type="number"
+       step="0.01"
+       min="0"
+       placeholder="0.00"
+       required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">End User Name</label>
+        <input asp-for="EndUserName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">End User Email</label>
+        <input asp-for="EndUserEmail" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Back Home</a>
+</form>
