@@ -1,4 +1,34 @@
 
+@*
+Procurement Tracking Tool
+    CSIS 483 Capstone Project
+    Moses Padilla
+
+    Purpose:
+    This page allows users to create and submit a new purchase request within the Procurement Tracking Tool. It serves as the starting point of the
+    procurement workflow by collecting information required for review and approval.
+
+    Functionality:
+    - Captures vendor information.
+    - Records the item being purchased.
+    - Collects the estimated procurement cost.
+    - Stores end-user contact information.
+    - Validates required user input fields.
+    - Submits purchase requests to the approval workflow.
+    - Provides navigation back to the application home page.
+
+    Notes:
+    This page was developed using ASP.NET Core Razor Views, HTML5 form controls, and Bootstrap styling. HTML5 input validation techniques were
+    used to ensure required information is entered before submission. Numeric validation was implemented on the Cost field to ensure users
+    enter valid monetary values.
+
+    References:
+    Carey, P. M. (2020). New perspectives on HTML5 and CSS3: Comprehensive (8th ed.). Cengage Learning.
+
+    Microsoft. (n.d.). Razor syntax reference for ASP.NET Core. https://learn.microsoft.com/en-us/aspnet/core/mvc/views/razor
+*@
+
+
 @model ProcurementTrackingTool.Models.PurchaseRequest
 
 @{

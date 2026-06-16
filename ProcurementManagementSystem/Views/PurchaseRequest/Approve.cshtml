@@ -1,4 +1,32 @@
 
+@*
+Procurement Tracking Tool
+    CSIS 483 Capstone Project
+    Moses Padilla
+
+    Purpose:
+    This page displays submitted purchase requests and allows procurement personnel to review, approve, or reject requests. It serves as the approval stage 
+    of the procurement workflow and provides visibility into the status of each request.
+
+    Functionality:
+    - Displays all submitted purchase requests.
+    - Shows vendor, item, cost, end-user, and status information.
+    - Formats procurement costs as U.S. currency.
+    - Allows users to approve purchase requests.
+    - Allows users to reject purchase requests.
+    - Provides navigation back to the application home page.
+
+    Notes:
+    This page utilizes ASP.NET Core Razor syntax to display purchase request data stored within the application. Bootstrap table
+    components and button controls are used to improve readability and provide user-friendly navigation and approval actions.
+
+    References:
+    Carey, P. M. (2020). New perspectives on HTML5 and CSS3: Comprehensive (8th ed.). Cengage Learning.
+
+    Microsoft. (n.d.). Razor syntax reference for ASP.NET Core. https://learn.microsoft.com/en-us/aspnet/core/mvc/views/razor
+*@
+
+
 @model List<ProcurementTrackingTool.Models.PurchaseRequest>
 
 @{
