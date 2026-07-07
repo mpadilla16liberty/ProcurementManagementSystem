@@ -31,7 +31,13 @@
  */
 
 
+using Microsoft.EntityFrameworkCore;
+using ProcurementTrackingTool.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ProcurementDbContext>(options =>
+    options.UseSqlite("Data Source=procurement.db"));
 
 // MVC
 builder.Services.AddControllersWithViews();

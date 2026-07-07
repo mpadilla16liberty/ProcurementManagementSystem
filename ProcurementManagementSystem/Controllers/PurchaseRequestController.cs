@@ -28,23 +28,20 @@
  */
 
 using Microsoft.AspNetCore.Mvc;
+using ProcurementTrackingTool.Data;
 using ProcurementTrackingTool.Models;
 
 namespace ProcurementTrackingTool.Controllers;
 
 public class PurchaseRequestController : Controller
 {
-    private static List<PurchaseRequest> requests = new List<PurchaseRequest>();
-    private static int nextId = 1;
+    private readonly ProcurementDbContext _context;
 
-private static List<Vendor> vendors = new List<Vendor>
-{
-    new Vendor { Id = 1, VendorName = "Dell Technologies", PocName = "John Smith", PocEmail = "john.smith@dell.com" },
-    new Vendor { Id = 2, VendorName = "CDW-G", PocName = "Sarah Johnson", PocEmail = "sarah.johnson@cdwg.com" },
-    new Vendor { Id = 3, VendorName = "SHI International", PocName = "Michael Brown", PocEmail = "michael.brown@shi.com" }
-};
+    public PurchaseRequestController(ProcurementDbContext context)
+    {
+        _context = context;
+    }
 
-private static int nextVendorId = 4;
     public IActionResult Index()
     {
         return View();
@@ -58,26 +55,29 @@ private static int nextVendorId = 4;
     [HttpPost]
     public IActionResult Create(PurchaseRequest request)
     {
-        request.Id = nextId++;
         request.Status = "Pending";
 
-        requests.Add(request);
+        _context.PurchaseRequests.Add(request);
+        _context.SaveChanges();
 
         return RedirectToAction("Approve");
     }
 
     public IActionResult Approve()
     {
+        var requests = _context.PurchaseRequests.ToList();
+
         return View(requests);
     }
 
     public IActionResult ApproveRequest(int id)
     {
-        var request = requests.FirstOrDefault(r => r.Id == id);
+        var request = _context.PurchaseRequests.FirstOrDefault(r => r.Id == id);
 
         if (request != null)
         {
             request.Status = "Approved";
+            _context.SaveChanges();
         }
 
         return RedirectToAction("Approve");
@@ -85,28 +85,30 @@ private static int nextVendorId = 4;
 
     public IActionResult RejectRequest(int id)
     {
-        var request = requests.FirstOrDefault(r => r.Id == id);
+        var request = _context.PurchaseRequests.FirstOrDefault(r => r.Id == id);
 
         if (request != null)
         {
             request.Status = "Rejected";
+            _context.SaveChanges();
         }
 
         return RedirectToAction("Approve");
     }
 
     public IActionResult Vendors()
-{
-    return View(vendors);
-}
+    {
+        var vendors = _context.Vendors.ToList();
 
-[HttpPost]
-public IActionResult AddVendor(Vendor vendor)
-{
-    vendor.Id = nextVendorId++;
+        return View(vendors);
+    }
 
-    vendors.Add(vendor);
+    [HttpPost]
+    public IActionResult AddVendor(Vendor vendor)
+    {
+        _context.Vendors.Add(vendor);
+        _context.SaveChanges();
 
-    return RedirectToAction("Vendors");
-}
+        return RedirectToAction("Vendors");
+    }
 }
