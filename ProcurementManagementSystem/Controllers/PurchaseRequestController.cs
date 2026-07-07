@@ -111,4 +111,18 @@ public class PurchaseRequestController : Controller
 
         return RedirectToAction("Vendors");
     }
+
+public IActionResult PrintPurchaseOrder(int id)
+{
+    var request = _context.PurchaseRequests.FirstOrDefault(r => r.Id == id);
+
+    if (request == null)
+    {
+        return NotFound();
+    }
+
+    return View(request);
+}
+
+
 }

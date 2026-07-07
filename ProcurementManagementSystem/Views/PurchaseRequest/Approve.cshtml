@@ -63,14 +63,35 @@ Procurement Tracking Tool
                 <td>@request.EndUserEmail</td>
                 <td>@request.Status</td>
                 <td>
-                    <a class="btn btn-success btn-sm" asp-action="ApproveRequest" asp-route-id="@request.Id">
-                        Approve
-                    </a>
 
-                    <a class="btn btn-danger btn-sm" asp-action="RejectRequest" asp-route-id="@request.Id">
-                        Reject
-                    </a>
-                </td>
+    @if (request.Status != "Approved")
+    {
+        <a class="btn btn-success btn-sm"
+           asp-action="ApproveRequest"
+           asp-route-id="@request.Id">
+            Approve
+        </a>
+    }
+
+    @if (request.Status != "Rejected")
+    {
+        <a class="btn btn-danger btn-sm"
+           asp-action="RejectRequest"
+           asp-route-id="@request.Id">
+            Reject
+        </a>
+    }
+
+    @if (request.Status == "Approved")
+    {
+        <a class="btn btn-primary btn-sm"
+           asp-action="PrintPurchaseOrder"
+           asp-route-id="@request.Id">
+            Print PO
+        </a>
+    }
+
+</td>
             </tr>
         }
     </tbody>

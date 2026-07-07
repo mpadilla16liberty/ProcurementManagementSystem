@@ -1,0 +1,84 @@
+
+@model ProcurementTrackingTool.Models.PurchaseRequest
+
+@{
+    ViewData["Title"] = "Purchase Order";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h2>Purchase Order</h2>
+
+        <button class="btn btn-primary" onclick="window.print()">
+            Print
+        </button>
+    </div>
+
+    <hr />
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th style="width:30%">Purchase Order #</th>
+            <td>PO-@Model.Id.ToString("D5")</td>
+        </tr>
+
+        <tr>
+            <th>Date</th>
+            <td>@DateTime.Now.ToShortDateString()</td>
+        </tr>
+
+        <tr>
+            <th>Vendor</th>
+            <td>@Model.VendorName</td>
+        </tr>
+
+        <tr>
+            <th>Item</th>
+            <td>@Model.ItemName</td>
+        </tr>
+
+        <tr>
+            <th>Cost</th>
+            <td>$@Model.Cost.ToString("N2")</td>
+        </tr>
+
+        <tr>
+            <th>Requested By</th>
+            <td>@Model.EndUserName</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>@Model.EndUserEmail</td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>
+                <strong>@Model.Status</strong>
+            </td>
+        </tr>
+
+    </table>
+
+    <a asp-action="Approve" class="btn btn-secondary">
+        Back
+    </a>
+
+</div>
+
+<style>
+@@media print {
+
+    button,
+    a {
+        display: none;
+    }
+
+    body {
+        margin: 25px;
+    }
+}
+</style>
